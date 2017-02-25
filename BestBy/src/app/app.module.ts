@@ -6,6 +6,7 @@ import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { PantryPage } from '../pages/pantry/pantry';
 import { RegisterPage } from '../pages/register/register';
+import { AddItemPage } from '../pages/add-item/add-item';
 
 
 // Import the AF2 Module
@@ -27,7 +28,8 @@ export const firebaseConfig = {
     Page2,
     LoginPage,
     RegisterPage,
-    PantryPage
+    PantryPage,
+    AddItemPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -40,7 +42,8 @@ export const firebaseConfig = {
     Page2,
     LoginPage,
     RegisterPage,
-    PantryPage
+    PantryPage,
+    AddItemPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

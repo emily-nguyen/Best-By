@@ -1,9 +1,10 @@
 
 import { Component } from '@angular/core';
-import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 import { NavController, AlertController } from 'ionic-angular';
 import { PantryPage } from '../pantry/pantry';
 import { RegisterPage } from '../register/register';
+
 
 /*
   Generated class for the Login page.

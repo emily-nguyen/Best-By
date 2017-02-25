@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 import { PantryPage } from '../pantry/pantry';
+import {FIREBASE_PROVIDERS, defaultFirebase,} from 'angularfire2';
+import firebase from 'firebase';
 
 /*
   Generated class for the Register page.
@@ -14,6 +16,8 @@ import { PantryPage } from '../pantry/pantry';
   templateUrl: 'register.html'
 })
 export class RegisterPage {
+
+  userID: any;
 
   registerCredentials = {email: '', password: ''};
 
@@ -28,7 +32,7 @@ export class RegisterPage {
   public register() {
     //console.log("came to logi");
     console.log(this.registerCredentials);
-    this.af.auth.createUser(this.registerCredentials);
+
     this.navCtrl.push(PantryPage);
   }
 

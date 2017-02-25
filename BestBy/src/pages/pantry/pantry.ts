@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AddItemPage } from '../add-item/add-item';
 
 /*
   Generated class for the Pantry page.
@@ -18,5 +19,13 @@ export class PantryPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PantryPage');
   }
+
+  public toAddItem(){
+
+    this.navCtrl.push(AddItemPage);
+
+
+  }
+
 
 }
