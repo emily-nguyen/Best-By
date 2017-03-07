@@ -6,6 +6,7 @@ import { FIREBASE_PROVIDERS, defaultFirebase,FirebaseListObservable } from 'angu
 import firebase from 'firebase';
 import { AddItemPage } from '../add-item/add-item';
 import { LoginPage } from '../login/login';
+import { ItemPage } from '../item/item';
 
 /*
   Generated class for the Pantry page.

@@ -39,4 +39,6 @@ export class AddItemPage {
     //this.navCtrl.pop();
   }
 
+  public takePicture() {
+  }
 }
