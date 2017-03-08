@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import { AddItemPage } from '../add-item/add-item';
 import { LoginPage } from '../login/login';
 import { ItemPage } from '../item/item';
+import { SettingsPage } from '../settings/settings';
 
 /*
   Generated class for the Pantry page.
@@ -102,4 +103,9 @@ export class PantryPage {
   public toLogout() {
     this.navCtrl.setRoot(LoginPage);
   }
+
+  public toSettings() {
+    this.navCtrl.push(SettingsPage);
+  }
+
 }

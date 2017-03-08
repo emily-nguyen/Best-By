@@ -33,7 +33,7 @@ export class LoginPage {
     }).then(
       (success) => {
         console.log(success);
-        this.navCtrl.push(PantryPage);
+        this.navCtrl.setRoot(PantryPage);
       }).catch(
       (err) => {
         let alert = this.alertCtrl.create({

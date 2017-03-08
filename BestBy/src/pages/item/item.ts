@@ -27,11 +27,27 @@ export class ItemPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public alertCtrl: AlertController) {
     this.item = navParams.data.item;
     console.log(navParams.data.item);
+
+    this.initializeDate();
+    console.log(this.date);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemPage');
   }
+
+  public initializeDate() {
+    this.userID = this.af.auth.getAuth().uid;
+
+    firebase.database().ref('Users/'+this.userID+'/Pantry/'+this.item+'/expiration').once("value", (snap) => {
+      this.date = snap.val();
+      });
+  }
+
+
+
+
+
 
   public deleteItem() {
     this.userID = this.af.auth.getAuth().uid;
