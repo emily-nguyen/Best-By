@@ -25,52 +25,50 @@ export class PantryPage {
   //pantryItems: FirebaseListObservable<any>;
   pantryList: string[] = [];
   pantryItems: string[] = [];
-
+  accepted: boolean;
   afire: any;
+  snapshot: any;
 
   constructor(public navCtrl: NavController, public af: AngularFire, public alertCtrl: AlertController) {
 
     this.userID = this.af.auth.getAuth().uid;
-    //firebase.database().ref('Users/'+this.userID+'/New/').set({newUser: true});
     this.afire = af;
-    //this.pantryItems = this.af.database.list('/Users/'+this.userID);
-    //console.log(this.pantryItems);
-
-    /*
-    af.database.list('Users/'+this.userID, { preserveSnapshot: true })
-      .subscribe(snapshots=> {
-        snapshots.forEach(snapshot=> {
-          this.pantryList.push(snapshot.val());
-        });
-      });
-      */
-
     this.initializeItems();
-
-    /*
-    var ref = firebase.database().ref('Users/'+this.userID)
-    ref.on("value", function(snap) {
-      console.log(snap.numChildren());
-
-      console.log(snap.val());
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    }); */
-
-
   }
 
   public initializeItems() {
 
     this.pantryItems = [];
-    this.afire.database.list('/Users/'+this.userID +'/Pantry', { preserveSnapshot: true })
+    this.afire.database.list('/Users/' + this.userID + '/Pantry', {preserveSnapshot: true})
       .subscribe(snapshots => {
         snapshots.forEach(snapshot => {
-          this.pantryItems.push(snapshot.key);
-        });
-      });
+          //console.log("***", snapshot.child("deleted").key);
 
-    console.log(this.pantryItems);
+
+           firebase.database().ref('Users/'+this.userID+'/Pantry/'+snapshot.key+'/deleted').once("value", (snap) => {
+
+             if (snap.val() == false) {
+               this.accepted = true;
+               /*
+               console.log("here");
+               //console.log(snapshot.key);
+               this.pantryItems.push(snapshot.key);
+               console.log("UGHUGHUGHGHKSLDFH");
+               */
+             }
+           });
+           if (this.accepted) {
+             this.pantryItems.push(snapshot.key);
+           }
+           this.accepted = false;
+
+        });
+
+
+        console.log(this.pantryItems);
+
+
+      });
   }
 
   getItems(ev: any,) {
@@ -97,6 +95,9 @@ export class PantryPage {
     this.navCtrl.push(AddItemPage);
   }
 
+  itemTapped(event, item) {
+    this.navCtrl.push(ItemPage,{item:item});
+  }
 
   public toLogout() {
     this.navCtrl.setRoot(LoginPage);

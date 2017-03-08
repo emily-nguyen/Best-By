@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
+import { AngularFire, AuthProviders, AuthMethods} from 'angularfire2';
 import { NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import {FIREBASE_PROVIDERS, defaultFirebase,} from 'angularfire2';
+import firebase from 'firebase';
+import { PantryPage } from '../pantry/pantry';
+
 
 /*
   Generated class for the Item page.
@@ -13,10 +19,27 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ItemPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  userID: any;
+  item: any;
+  date: any;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, public alertCtrl: AlertController) {
+    this.item = navParams.data.item;
+    console.log(navParams.data.item);
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ItemPage');
+  }
+
+  public deleteItem() {
+    this.userID = this.af.auth.getAuth().uid;
+    console.log('****',this.item);
+    firebase.database().ref('Users/'+this.userID+'/Pantry/'+this.item+'/').update({deleted: true});
+    this.navCtrl.setRoot(PantryPage);
+    //this.navCtrl.insert(0, PantryPage, {direction: 'back'});
+    //this.navCtrl.pop();
   }
 
 }

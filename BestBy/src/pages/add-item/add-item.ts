@@ -33,7 +33,8 @@ export class AddItemPage {
 
     //this.af.auth.createUser(this.registerCredentials);
     this.userID = this.af.auth.getAuth().uid;
-    firebase.database().ref('Users/'+this.userID+'/Pantry/'+this.item+'/').set({expiration: this.date});
+    firebase.database().ref('Users/'+this.userID+'/Pantry/'+this.item+'/').set({expiration: this.date,
+      deleted:false});
     this.navCtrl.setRoot(PantryPage);
     //this.navCtrl.insert(0, PantryPage, {direction: 'back'});
     //this.navCtrl.pop();
