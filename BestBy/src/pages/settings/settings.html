@@ -12,7 +12,30 @@
 
 </ion-header>
 
-
 <ion-content padding>
 
+
+  <ion-item>
+    <ion-label>Order By</ion-label>
+    <ion-select [(ngModel)]="orderItems">
+      <ion-option value="orderName" selected="true">Name</ion-option>
+      <ion-option value="orderExpiration">Expiration</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Sort By</ion-label>
+    <ion-select [(ngModel)]="sortItems">
+      <ion-option value="ascending" selected="true">Ascending</ion-option>
+      <ion-option value="descending">Descending</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <div style= "text-align: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom:0;"><button ion-button round outline (click)="saveSetting()">Save</button></div>
+
 </ion-content>
+

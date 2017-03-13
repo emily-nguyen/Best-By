@@ -24,27 +24,41 @@ export class PantryPage {
   userID: any;
   searchQuery: string = '';
   //pantryItems: FirebaseListObservable<any>;
-  pantryList: string[] = [];
   pantryItems: string[] = [];
   accepted: boolean;
   afire: any;
-  snapshot: any;
+  //snapshot: any;
+  pantryOrder: string;
+  pantrySort: string;
 
   constructor(public navCtrl: NavController, public af: AngularFire, public alertCtrl: AlertController) {
 
     this.userID = this.af.auth.getAuth().uid;
+
+    firebase.database().ref('Users/'+this.userID+'/Setting/orderBy').once("value", (snap1) => {
+      this.pantryOrder = snap1.val();
+    });
+
+
+    console.log('****',this.pantrySort);
+
     this.afire = af;
+
     this.initializeItems();
   }
+
+
+
+
 
   public initializeItems() {
 
     this.pantryItems = [];
     this.afire.database.list('/Users/' + this.userID + '/Pantry', {preserveSnapshot: true})
       .subscribe(snapshots => {
+
         snapshots.forEach(snapshot => {
           //console.log("***", snapshot.child("deleted").key);
-
 
            firebase.database().ref('Users/'+this.userID+'/Pantry/'+snapshot.key+'/deleted').once("value", (snap) => {
 
@@ -65,12 +79,23 @@ export class PantryPage {
 
         });
 
+        firebase.database().ref('Users/'+this.userID+'/Setting/sortBy').once("value", (snap2) => {
+          //console.log(snap2.val());
+          if (snap2.val() == 'descending'){
+            this.pantryItems.reverse();
+            console.log('DOES IT WORKWRLKSJFLSKDJF');
+          }
+
+        });
 
         console.log(this.pantryItems);
 
 
       });
+
+
   }
+
 
   getItems(ev: any,) {
     // Reset items back to all of the items
