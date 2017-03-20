@@ -10,10 +10,13 @@ import { AddItemPage } from '../pages/add-item/add-item';
 import { ItemPage } from '../pages/item/item';
 import { SettingsPage } from '../pages/settings/settings';
 import { RecieptPage } from '../pages/reciept/reciept';
+import { RecieptItemsPage } from '../pages/reciept-items/reciept-items';
+
 
 
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
+
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -35,7 +38,8 @@ export const firebaseConfig = {
     AddItemPage,
     ItemPage,
     SettingsPage,
-    RecieptPage
+    RecieptPage,
+    RecieptItemsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -52,7 +56,8 @@ export const firebaseConfig = {
     AddItemPage,
     ItemPage,
     SettingsPage,
-    RecieptPage
+    RecieptPage,
+    RecieptItemsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
