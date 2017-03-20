@@ -5,6 +5,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import {FIREBASE_PROVIDERS, defaultFirebase,} from 'angularfire2';
 import firebase from 'firebase';
 import { PantryPage } from '../pantry/pantry';
+import { RecieptPage } from '../reciept/reciept';
 
 /*
   Generated class for the AddItem page.
@@ -41,5 +42,6 @@ export class AddItemPage {
   }
 
   public takePicture() {
+    this.navCtrl.push(RecieptPage);
   }
 }
